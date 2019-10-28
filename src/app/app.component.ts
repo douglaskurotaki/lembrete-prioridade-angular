@@ -6,12 +6,8 @@ import { Component, ViewChild, OnInit } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
 	titulo = 'CRUD de lembretes com Angular';
 	@ViewChild(ErrorMsgComponent, {static: true}) errorMsgComponent: ErrorMsgComponent;
-
-	ngOnInit(){
-		this.errorMsgComponent.setError('Mensagem de Erro!');
-	}	
 }
 
