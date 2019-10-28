@@ -15,6 +15,33 @@ export class ListaLembreteComponent implements OnInit {
   constructor(private lembreteService: LembreteService) { }
 
   ngOnInit() {
-  }
+		this.getListaLembretes();
+	}
+	
+	/**
+	 * Nesse método o lembreteService retorna um Observable e isso faz
+	 * com que possamos utilizar o método subscribe que nada mais é
+	 * uma validação se irá dar certo ou não. Passamos no parâmetro dela
+	 * um array que irá pegar da api e dentro do callback atribuimos
+	 */
+	getListaLembretes() {
+		this.lembreteService.getListaLembretes()
+			.subscribe((lembretes: Lembrete[]) => {
+				this.lembretes = lembretes
+			}, () => {this.errorMsgComponent.setError('Falha ao buscar lembretes'); })
+	}
+
+	deletaLembrete(id: number) {
+		this.lembreteService.deletaLembrete(id)
+			.subscribe(() => {
+				this.getListaLembretes();
+			}, () => {this.errorMsgComponent.setError('Falha ao buscar lembretes'); })
+	}
+
+	existemLembretes(): boolean{
+		return this.lembretes && this.lembretes.length > 0;
+	}
+
+
 
 }

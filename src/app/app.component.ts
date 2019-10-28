@@ -8,6 +8,5 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 })
 export class AppComponent{
 	titulo = 'CRUD de lembretes com Angular';
-	@ViewChild(ErrorMsgComponent, {static: true}) errorMsgComponent: ErrorMsgComponent;
 }
 
